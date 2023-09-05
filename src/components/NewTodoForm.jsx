@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 export default class NewTodoForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { task: '', id: '' };
+    this.state = { task: '', id: '', completed: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }

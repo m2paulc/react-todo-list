@@ -6,12 +6,14 @@ export default class Todo extends Component {
     super(props);
     this.state = {
       isEditing: false,
-      task: this.props.task
+      task: this.props.task,
+      completed: this.props.completed
     };
     this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
+    this.handleCompletion = this.handleCompletion.bind(this);
   }
   handleRemoveTodo() {
     this.props.removeTodo(this.props.id);
@@ -25,7 +27,11 @@ export default class Todo extends Component {
     this.setState({ isEditing: false });
   }
   handleInputUpdate(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ task: event.target.value });
+  }
+  handleCompletion(event) {
+    this.props.toggleTodo(this.props.id);
+    this.setState({ completed: event.target.checked });
   }
 
   render() {
@@ -34,15 +40,22 @@ export default class Todo extends Component {
       result = (
         <div>
           <form onSubmit={ this.handleUpdate }>
-            <input type='text' name='task' value={ this.state.task } onChange={ this.handleInputUpdate } />
+            <input
+              type='text'
+              name='task'
+              value={ this.state.task }
+              onChange={ this.handleInputUpdate } />
             <button>Save</button>
           </form>
         </div>
       );
     } else {
       result = (
-        <div className='todo-list'>
-          <li>{ this.props.task }</li>
+        <div className='todo-list-container'>
+          <div className='todo-list'>
+            <input type='checkbox' name='completed' checked={ this.state.completed } onChange={ this.handleCompletion } />
+            <li className={ this.props.completed ? 'completed' : '' }>{ this.props.task }</li>
+          </div>
           <div className='todo-list-buttons'>
             <button onClick={ this.toggleForm }>Edit</button>
             <button onClick={ this.handleRemoveTodo }>X</button>
@@ -59,6 +72,8 @@ export default class Todo extends Component {
 Todo.propTypes = {
   task: PropTypes.string,
   id: PropTypes.string,
+  completed: PropTypes.bool,
   removeTodo: PropTypes.func,
-  updateTodo: PropTypes.func
+  updateTodo: PropTypes.func,
+  toggleTodo: PropTypes.func
 };

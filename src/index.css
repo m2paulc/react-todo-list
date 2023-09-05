@@ -14,7 +14,7 @@
   -webkit-text-size-adjust: 100%;
 }
 
-.todo-list {
+.todo-list-container {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -22,13 +22,17 @@
   align-items: center;
 }
 
-.todo-list-buttons {
+.todo-list-buttons,
+.todo-list {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
 }
 
+.todo-list li {
+  list-style: none;
+}
 
 .todo-list-buttons button {
   width: min-content;
@@ -36,4 +40,9 @@
 
 .todo-list-buttons button:first-child {
   margin-right: 1rem;
+}
+
+.completed {
+  color: lightslategray;
+  text-decoration: line-through;
 }

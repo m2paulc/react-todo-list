@@ -10,6 +10,7 @@ export default class TodoList extends Component {
     this.addNewTodo = this.addNewTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
+    this.toggleCompletion = this.toggleCompletion.bind(this);
   }
   addNewTodo(newTodo) {
     this.setState((state) => ({
@@ -30,9 +31,25 @@ export default class TodoList extends Component {
     });
     this.setState({ todos: updatedTodos });
   }
+  toggleCompletion(id) {
+    const updatedTodos = this.state.todos.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
+    this.setState({ todos: updatedTodos });
+  }
   render() {
     const renderTodos = this.state.todos.map(todo => (
-      <Todo key={ todo.id } id={ todo.id } task={ todo.task } removeTodo={ this.removeTodo } updateTodo={ this.updateTodo } />
+      <Todo
+        key={ todo.id }
+        id={ todo.id }
+        task={ todo.task }
+        completed={ todo.completed }
+        removeTodo={ this.removeTodo }
+        updateTodo={ this.updateTodo }
+        toggleTodo={ this.toggleCompletion } />
     ));
     return (
       <div>
