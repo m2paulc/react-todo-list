@@ -14,3 +14,26 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.todo-list {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-list-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.todo-list-buttons button {
+  width: min-content;
+}
+
+.todo-list-buttons button:first-child {
+  margin-right: 1rem;
+}
