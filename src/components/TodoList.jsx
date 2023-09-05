@@ -12,16 +12,19 @@ export default class TodoList extends Component {
     this.updateTodo = this.updateTodo.bind(this);
     this.toggleCompletion = this.toggleCompletion.bind(this);
   }
+
   addNewTodo(newTodo) {
     this.setState((state) => ({
       todos: [...state.todos, newTodo]
     }));
   }
+
   removeTodo(id) {
     this.setState({
       todos: this.state.todos.filter((todo) => todo.id !== id)
     });
   }
+
   updateTodo(id, updatedTask) {
     const updatedTodos = this.state.todos.map(todo => {
       if (todo.id === id) {
@@ -31,6 +34,7 @@ export default class TodoList extends Component {
     });
     this.setState({ todos: updatedTodos });
   }
+
   toggleCompletion(id) {
     const updatedTodos = this.state.todos.map(todo => {
       if (todo.id === id) {

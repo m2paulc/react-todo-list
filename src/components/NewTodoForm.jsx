@@ -9,6 +9,7 @@ export default class NewTodoForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(event) {
     this.setState({ task: event.target.value });
   }
@@ -24,7 +25,13 @@ export default class NewTodoForm extends Component {
     return (
       <form onSubmit={ this.handleSubmit }>
         <label htmlFor='task'>Enter New Todo
-          <input type='text' id='task' name='task' value={ this.state.task } placeholder='New Todo' onChange={ this.handleChange } />
+          <input
+            type='text'
+            id='task'
+            name='task'
+            value={ this.state.task }
+            placeholder='New Todo'
+            onChange={ this.handleChange } />
         </label>
         <button>Add New Todo</button>
       </form>
