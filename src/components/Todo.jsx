@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 export default class Todo extends Component {
   constructor(props) {
     super(props);
+    this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
+  }
+  handleRemoveTodo() {
+    this.props.removeTodo(this.props.id);
   }
 
   render() {
@@ -12,7 +16,7 @@ export default class Todo extends Component {
         <li>{ this.props.task }</li>
         <div className='todo-list-buttons'>
           <button>Edit</button>
-          <button>X</button>
+          <button onClick={ this.handleRemoveTodo }>X</button>
         </div>
       </div>
     );
@@ -20,5 +24,7 @@ export default class Todo extends Component {
 }
 
 Todo.propTypes = {
-  task: PropTypes.string
+  task: PropTypes.string,
+  id: PropTypes.string,
+  removeTodo: PropTypes.func
 };
