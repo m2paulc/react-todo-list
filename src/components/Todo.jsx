@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FaPencil, FaTrash } from 'react-icons/fa6';
 
 export default class Todo extends Component {
   constructor(props) {
@@ -53,12 +54,16 @@ export default class Todo extends Component {
       result = (
         <div className='todo-list-container'>
           <div className='todo-list'>
-            <input type='checkbox' name='completed' checked={ this.state.completed } onChange={ this.handleCompletion } />
+            <input
+              type='checkbox'
+              name='completed'
+              checked={ this.state.completed }
+              onChange={ this.handleCompletion } />
             <li className={ this.props.completed ? 'completed' : '' }>{ this.props.task }</li>
           </div>
           <div className='todo-list-buttons'>
-            <button onClick={ this.toggleForm }>Edit</button>
-            <button onClick={ this.handleRemoveTodo }>X</button>
+            <button onClick={ this.toggleForm }><FaPencil /></button>
+            <button onClick={ this.handleRemoveTodo }><FaTrash /></button>
           </div>
         </div>
       );
