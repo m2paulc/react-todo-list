@@ -35,6 +35,12 @@ export default class TodoList extends Component {
     this.setState({ todos: updatedTodos });
   }
 
+  componentDidUpdate(prevProp, prevState) {
+    console.log('INSIDE COMPONENT DID UPDATE');
+    console.log(prevState.todos);
+    console.log(this.state.todos);
+  }
+
   toggleCompletion(id) {
     const updatedTodos = this.state.todos.map(todo => {
       if (todo.id === id) {
